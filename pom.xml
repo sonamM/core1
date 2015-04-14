@@ -317,17 +317,8 @@
                     </dependency>
                 </dependencies>
                 <!-- executions added now  -->
-				     <executions>
-    <execution>
-      <id>run-unit-tests</id>
-        <goals>
-          <goal>test</goal>
-        </goals>
-        <configuration>
-          <skip>${skipUnitTests}</skip>
-        </configuration>
-    </execution>
-  </executions>
+				 
+   
 				<configuration>
 				    
 		
@@ -339,7 +330,7 @@
 			</plugin>
 			
 			<!-- jacoco plugins -->
-<!--   <plugin>
+   <plugin>
   <groupId>org.jacoco</groupId>
   <artifactId>jacoco-maven-plugin</artifactId>
   <version>0.5.5.201112152213</version>
@@ -372,32 +363,11 @@
    <source>1.6</source>
    <target>1.6</target>
   </configuration>
- </plugin>  -->
+ </plugin> 
  
- <!-- try#2 -->
+
 
               
- <!-- try#2 -->
-   <plugin>
-  <groupId>org.jacoco</groupId>
-  <artifactId>jacoco-maven-plugin</artifactId>
-  <version>0.6.4.201312101107</version>
-  <executions>
-    <execution>
-      <id>prepare-unit-test-agent</id>
-        <goals>
-          <goal>prepare-agent</goal>
-        </goals>
-    </execution>
-    <execution>
-      <id>generate-unit-test-report</id>
-        <goals>
-          <goal>report</goal>
-        </goals>
-    </execution>
-   
-  </executions>
-</plugin> 
 
 
 
