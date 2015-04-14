@@ -320,7 +320,14 @@
 				 
    
 				<configuration>
-				    
+				    	<!--  includes/excludes added now  -->		    
+		<includes>
+       <include>**/*Test.java</include>
+       <include>**/*Tests.java</include>
+      </includes>
+      <excludes>
+       <exclude>**/it/*IT.java</exclude>
+      </excludes>
 		
 					<systemPropertyVariables>
 						<environment>${env.USER}</environment>
