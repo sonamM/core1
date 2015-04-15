@@ -12,6 +12,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- Sonar -->
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+    <sonar.jacoco.reportPath>/Users/sonamdeo/eTouch-local-git-latest-april2015/test-automation-version1/test-automation-library/target/jacoco.exec</sonar.jacoco.reportPath>
+    <sonar.language>java</sonar.language>
 		
 	</properties>
 
@@ -290,15 +294,6 @@
 			<version>1.3</version>
 		</dependency>
 		
-		
-		
-		<dependency>
-      <groupId>org.codehaus.sonar-plugins.java</groupId>
-      <artifactId>sonar-jacoco-listeners</artifactId>
-      <version>1.4</version>
-      <scope>test</scope>
-    </dependency>
-		
 		<!-- End Cucumber dependencies -->
 	</dependencies>
 	
@@ -326,13 +321,17 @@
 				 
    
 				<configuration>
-				    
-				    <!-- added for latest support -->
-				     <argLine>${jacoco.agent.ut.arg}</argLine>
-				     <properties>
-           
-          </properties>
-				    
+				    <!--  includes/excludes added now  -->	
+		
+	<!-- 	<includes>
+       <include>**/*Test.java</include>
+       <include>**/*Tests.java</include>
+      </includes>
+      <excludes>
+       <exclude>**/it/*IT.java</exclude>
+      </excludes> -->
+      
+						 
 		
 					<systemPropertyVariables>
 						<environment>${env.USER}</environment>
@@ -342,27 +341,23 @@
 			</plugin>
       
 
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.6.3.201306030806</version>
-        <executions>
-          <!-- Prepares a variable, jacoco.agent.ut.arg, that contains the info to be passed to the JVM hosting the code
-being tested. -->
-          <execution>
-            <id>prepare-ut-agent</id>
-            <phase>process-test-classes</phase>
+     <plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.6.0.201210061924</version>
+    <configuration>
+        <destFile>${sonar.jacoco.reportPath}</destFile>
+        <append>true</append>
+    </configuration>
+    <executions>
+        <execution>
+            <id>agent</id>
             <goals>
-              <goal>prepare-agent</goal>
+                <goal>prepare-agent</goal>
             </goals>
-            <configuration>
-              <destFile>${sonar.jacoco.reportPath}</destFile>
-              <propertyName>jacoco.agent.ut.arg</propertyName>
-              <append>true</append>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+        </execution>
+    </executions>
+</plugin>
     </plugins>
   </build>
 </project> 
