@@ -14,9 +14,8 @@
 		<!-- Sonar -->
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-    <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+    <sonar.jacoco.reportPath>/Users/sonamdeo/eTouch-local-git-latest-april2015/test-automation-version1/test-automation-library/target/jacoco.exec</sonar.jacoco.reportPath>
     <sonar.language>java</sonar.language>
-
 	</properties>
 
 	<dependencies>
@@ -299,6 +298,8 @@
 		<!-- End Cucumber dependencies -->
 	</dependencies>
 	<build>
+	    	
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -359,8 +360,9 @@
   </configuration>
  </plugin> -->
  
- 
-    <plugin>
+ <!-- try with maven antrun plugin -->
+<!--   
+ <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.6.3.201306030806</version>
@@ -375,13 +377,14 @@
     </plugin>
 
     <plugin>
+        
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>1.6</version>
         <executions>
             <execution>
                 <id>default-report</id>
-                <phase>package</phase>
+          <phase>package</phase>  
                 <goals>
                     <goal>run</goal>
                 </goals>
@@ -414,7 +417,13 @@
             </execution>
         </executions>
         <dependencies>
-        	    <dependency>
+            <dependency>
+                <groupId>org.jacoco</groupId>
+                <artifactId>org.jacoco.ant</artifactId>
+                <version>0.6.3.201306030806</version>
+            </dependency>
+            
+                <dependency>
                             <groupId>ant-contrib</groupId>
                             <artifactId>ant-contrib</artifactId>
                             <version>1.0b3</version>
@@ -430,15 +439,29 @@
                             <artifactId>ant-nodeps</artifactId>
                             <version>1.8.1</version>
                         </dependency>
-            <dependency>
-                <groupId>org.jacoco</groupId>
-                <artifactId>org.jacoco.ant</artifactId>
-                <version>0.6.3.201306030806</version>
-            </dependency>
-        </dependencies>
-    </plugin>
-
-			  
-		</plugins>
-	</build>
+              </dependencies>
+    </plugin> -->
+    
+    <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.0.201403182114</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+		
+		</plugins>	
+			</build>
 </project>
