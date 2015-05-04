@@ -297,6 +297,9 @@
 		
 		<!-- End Cucumber dependencies -->
 	</dependencies>
+	
+	
+          
 	<build>
 	    	
 
@@ -316,24 +319,26 @@
                         <artifactId>surefire-testng</artifactId>
                         <version>2.12.4</version>
                     </dependency>
+                     
                 </dependencies>
 				<configuration>
 		
 					<systemPropertyVariables>
 						<environment>${env.USER}</environment>
+						<value>tools.jar</value>
 					</systemPropertyVariables>
 			
 				</configuration>	
 			</plugin>
 			
-			<!-- jacoco plugins -->
- <!--  <plugin>
+			<!-- jacoco -->
+			<plugin>
   <groupId>org.jacoco</groupId>
   <artifactId>jacoco-maven-plugin</artifactId>
-  <version>0.6.3.201306030806</version>
+  <version>0.5.5.201112152213</version>
   <configuration>
-   <destFile>${basedir}/target/coverage-reports/jacoco.exec</destFile>
-   <dataFile>${basedir}/target/coverage-reports/jacoco.exec</dataFile>
+   <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+   <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
   </configuration>
   <executions>
    <execution>
@@ -358,110 +363,11 @@
    <source>1.6</source>
    <target>1.6</target>
   </configuration>
- </plugin> -->
+ </plugin>
  
- <!-- try with maven antrun plugin -->
-<!--   
- <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.6.3.201306030806</version>
-        <executions>
-            <execution>
-                <id>default-prepare-agent</id>
-                <goals>
-                    <goal>prepare-agent</goal>
-                </goals>
-            </execution>
-        </executions>
-    </plugin>
-
-    <plugin>
-        
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-            <execution>
-                <id>default-report</id>
-          <phase>package</phase>  
-                <goals>
-                    <goal>run</goal>
-                </goals>
-                <configuration>
-                    <target>
-                        <taskdef name="report" classname="org.jacoco.ant.ReportTask" classpathref="maven.plugin.classpath" />
-                        <report>
-                            <executiondata>
-                                <file file="${project.build.directory}/jacoco.exec" />
-                            </executiondata>
-                            <structure name="Coverage">
-                                <classfiles>
-                                    <fileset dir="${project.build.directory}/classes"/>
-                                    <fileset dir="${project.build.directory}/test-classes"/>
-                                </classfiles>
-                                <sourcefiles encoding="UTF-8">
-                                    <fileset dir="src/main/java"/>
-                                    <fileset dir="src/test/java"/>
-                                </sourcefiles>
-                            </structure>
-                            <check failonviolation="true" violationsproperty="violation">
-                                <rule element="BUNDLE">
-                                    <limit counter="INSTRUCTION" value="COVEREDRATIO" minimum="0.05" />
-                                </rule>
-                            </check>
-                            <html destdir="${project.build.directory}/jacoco-internal"/>
-                        </report>
-                    </target>
-                </configuration>
-            </execution>
-        </executions>
-        <dependencies>
-            <dependency>
-                <groupId>org.jacoco</groupId>
-                <artifactId>org.jacoco.ant</artifactId>
-                <version>0.6.3.201306030806</version>
-            </dependency>
-            
-                <dependency>
-                            <groupId>ant-contrib</groupId>
-                            <artifactId>ant-contrib</artifactId>
-                            <version>1.0b3</version>
-                            <exclusions>
-                                <exclusion>
-                                    <groupId>ant</groupId>
-                                    <artifactId>ant</artifactId>
-                                </exclusion>
-                            </exclusions>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.apache.ant</groupId>
-                            <artifactId>ant-nodeps</artifactId>
-                            <version>1.8.1</version>
-                        </dependency>
-              </dependencies>
-    </plugin> -->
-    
-    <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.0.201403182114</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>prepare-agent</goal>
-                    </goals>
-                </execution>
-                <execution>
-                    <id>report</id>
-                    <phase>prepare-package</phase>
-                    <goals>
-                        <goal>report</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
 		
 		</plugins>	
 			</build>
+			
+			
 </project>
